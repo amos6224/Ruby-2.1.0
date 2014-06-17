@@ -1,12 +1,10 @@
-image: mischief/docker-golang
+image: ubuntu:14.04
 env:
-- GOPATH=/var/cache/drone
+  - CI=drone
+  - USE_SYSTEM=1
 script:
-- go build
-- go test -v
-services:
-- redis
+  - bundle install
 notify:
-email:
-recipients:
-- jeff@namely.com
+  email:
+    recipients:
+      - jeff@namely.com
