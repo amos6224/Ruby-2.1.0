@@ -1,4 +1,4 @@
-image: bradrydzewski/go
+image: bradrydzewski/go 1.2
 env:
   - GOROOT=/usr/local/go
   - GOPATH=$PWD/Godeps/_workspace:/var/cache/drone
