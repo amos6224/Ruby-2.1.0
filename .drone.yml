@@ -1,4 +1,4 @@
-image: ubuntu:14.04
+image: bradrydzewski/ruby:2.0.0
 env:
   - CI=drone
   - USE_SYSTEM=1
