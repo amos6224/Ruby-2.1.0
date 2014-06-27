@@ -1,17 +1,6 @@
 image: amos6224/git
-
 script:
-  - /etc/my_init.d/postgresql.sh
-  - /etc/my_init.d/redis.sh
-  - apt-get update
-  - apt-get install -y imagemagick libxslt1-dev libxml2-dev libpq-dev
-  - cp config/database.drone.yml config/database.yml
-  - cp .env.example .env
-  - bundle install
-  - psql -c 'create database test;' -U root -h 127.0.0.1
-  - RAILS_ENV=test bundle exec rake db:schema:load
-  - RAILS_ENV=test bundle exec rspec spec
-
+ touch teste.txt
 notify:
   email:
     recipients:
