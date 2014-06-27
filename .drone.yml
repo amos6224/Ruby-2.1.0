@@ -1,10 +1,11 @@
-image: ubuntu:14.04
+image: go1.2
 env:
-  - CI=drone
-  - USE_SYSTEM=1
+  - GOROOT=/usr/local/go
+  - GOPATH=$PWD/Godeps/_workspace:/var/cache/drone
+  - PATH=$PWD/Godeps/_workspace/bin:/var/cache/drone/bin:$PATH
 script:
-  - bundle install
-notify:
-  email:
-    recipients:
-      - jeff@namely.com
+  - sudo apt-get -y install libsqlite3-dev sqlite3 1> /dev/null 2> /dev/null
+  - make embed
+  - make build-dist
+  - make test
+  - make dpkg
