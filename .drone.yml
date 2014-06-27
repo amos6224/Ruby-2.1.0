@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FROM amos6224/git 
 
  MAINTAINER Jeff
@@ -25,3 +26,13 @@ FROM amos6224/git
  ENTRYPOINT ["/usr/local/bin/droned"]
 
  CMD ["--port=:80", "--path=/var/lib/drone/drone.sqlite"]
+=======
+image: go1.2
+env:
+  - GOROOT=/usr/local/go
+  - GOPATH=$PWD/Godeps/_workspace:/var/cache/drone
+  - PATH=$PWD/Godeps/_workspace/bin:/var/cache/drone/bin:$PATH
+script:
+  - sudo apt-get -y install libsqlite3-dev sqlite3 1> /dev/null 2> /dev/null
+  - sudo apt-get -y install htop
+>>>>>>> 067a69ba6cb51048cdaa963e63b910d79998dfeb
