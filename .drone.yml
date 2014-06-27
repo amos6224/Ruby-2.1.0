@@ -1,4 +1,4 @@
-image: wnameless/ruby-2.1.0
+image: amos6224/git
 
 script:
   - /etc/my_init.d/postgresql.sh
