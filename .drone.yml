@@ -1,4 +1,4 @@
-FROM amos6224/git 
+FROM amos6224/postgres 
 
  MAINTAINER Jeff
 
