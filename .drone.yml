@@ -1,8 +1,0 @@
-image: amos6224/postgres
-script:
- useradd jdestine
- mkdir /home/jeff
-notify:
-  email:
-    recipients:
-      - jeff@namely.com
