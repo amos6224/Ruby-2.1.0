@@ -3,7 +3,7 @@ env:
   - CI=drone
   - USE_SYSTEM=1
 script:
-  - bundle install
+  - redis
 notify:
   email:
     recipients:
