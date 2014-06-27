@@ -1,4 +1,4 @@
-FROM amos6224/postgres 
+FROM damon/postgresql
 
  MAINTAINER Jeff
 
