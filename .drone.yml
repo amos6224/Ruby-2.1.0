@@ -1,15 +1,26 @@
-image: bradrydzewski/go 1.2
-env:
-  - GOROOT=/usr/local/go
-  - GOPATH=$PWD/Godeps/_workspace:/var/cache/drone
-  - PATH=$PWD/Godeps/_workspace/bin:/var/cache/drone/bin:$PATH
+image: wnameless/ruby-2.1.0
+
 script:
-  - sudo apt-get -y install libsqlite3-dev sqlite3 1> /dev/null 2> /dev/null
-  - make embed
-  - make build-dist
-  - make test
-  - make dpkg
+  - /etc/my_init.d/postgresql.sh
+  - /etc/my_init.d/redis.sh
+  - apt-get update
+  - apt-get install -y imagemagick libxslt1-dev libxml2-dev libpq-dev
+  - cp config/database.drone.yml config/database.yml
+  - cp .env.example .env
+  - bundle install
+  - psql -c 'create database test;' -U root -h 127.0.0.1
+  - RAILS_ENV=test bundle exec rake db:schema:load
+  - RAILS_ENV=test bundle exec rspec spec
+
 notify:
   email:
     recipients:
       - jeff@namely.com
+      - attila@namely.com
+
+  hipchat:
+    room: CI
+    token: {{hipchat_token}}
+    on_started: true
+    on_success: true
+    on_failure: true
