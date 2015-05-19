@@ -1,0 +1,12 @@
+image: amos6224/namely.3
+script:
+ - /etc/init.d/redis_6379 start
+ - /etc/init.d/postgresql start
+ - sleep 5
+ - sudo -u postgres createuser --superuser root
+ - createdb -U root namely_test
+ - /etc/init.d/postgresql reload
+ - cp config/database.drone.yml config/database.yml
+ - bundle install
+ - RAILS_ENV=test bundle exec rake db:test:load
+ - RAILS_ENV=test bundle exec rspec spec
